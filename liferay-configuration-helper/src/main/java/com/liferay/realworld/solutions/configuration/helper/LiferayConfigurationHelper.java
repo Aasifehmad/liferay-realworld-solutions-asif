@@ -282,59 +282,64 @@ public class LiferayConfigurationHelper {
     }
 
     /**
-     * Get portlet instance configuration.
+     * Get portlet instance configuration using ThemeDisplay.
      * 
      * @param configClass the configuration class/interface
-     * @param portletId the portlet instance ID
+     * @param themeDisplay the theme display containing portlet context
      * @param <T> the configuration type
      * @return the configuration instance
      * @throws ConfigurationException if configuration cannot be loaded
      */
-    public <T> T getPortletInstanceConfiguration(Class<T> configClass, String portletId) 
+    public <T> T getPortletInstanceConfiguration(Class<T> configClass, ThemeDisplay themeDisplay) 
         throws ConfigurationException {
         try {
-            return _configurationProvider.getPortletInstanceConfiguration(configClass, portletId);
+            return _configurationProvider.getPortletInstanceConfiguration(configClass, themeDisplay);
         } catch (ConfigurationException e) {
             _log.error(
-                "Unable to load portlet instance configuration for " + configClass.getName() + 
-                ", portletId: " + portletId, e);
+                "Unable to load portlet instance configuration for " + configClass.getName(), e);
             throw e;
         }
     }
 
     /**
-     * Get portlet instance configuration with null-safe handling.
+     * Get portlet instance configuration with null-safe handling using ThemeDisplay.
      * 
      * @param configClass the configuration class/interface
-     * @param portletId the portlet instance ID
+     * @param themeDisplay the theme display containing portlet context
      * @param <T> the configuration type
      * @return the configuration instance, or null if not available
      */
-    public <T> T getPortletInstanceConfigurationSafe(Class<T> configClass, String portletId) {
+    public <T> T getPortletInstanceConfigurationSafe(Class<T> configClass, ThemeDisplay themeDisplay) {
         try {
-            return getPortletInstanceConfiguration(configClass, portletId);
+            return getPortletInstanceConfiguration(configClass, themeDisplay);
         } catch (ConfigurationException e) {
             _log.warn(
                 "Portlet instance configuration not available for " + configClass.getName() + 
-                ", portletId: " + portletId + ". Returning null.", e);
+                ". Returning null.", e);
             return null;
         }
     }
 
     /**
      * Get portlet instance configuration from a PortletRequest.
-     * Extracts portlet instance ID from the request.
+     * Extracts ThemeDisplay from the request.
      * 
      * @param configClass the configuration class/interface
      * @param portletRequest the portlet request
      * @param <T> the configuration type
      * @return the configuration instance
      * @throws ConfigurationException if configuration cannot be loaded
+     * @throws PortalException if ThemeDisplay cannot be extracted from request
      */
     public <T> T getPortletInstanceConfiguration(Class<T> configClass, PortletRequest portletRequest) 
-        throws ConfigurationException {
-        String portletId = portletRequest.getAttribute(WebKeys.PORTLET_ID).toString();
-        return getPortletInstanceConfiguration(configClass, portletId);
+        throws ConfigurationException, PortalException {
+        ThemeDisplay themeDisplay = (ThemeDisplay) portletRequest.getAttribute(WebKeys.THEME_DISPLAY);
+        
+        if (themeDisplay == null) {
+            throw new PortalException("ThemeDisplay not found in PortletRequest");
+        }
+        
+        return getPortletInstanceConfiguration(configClass, themeDisplay);
     }
 
     /**

@@ -116,8 +116,13 @@ MyGroupConfig config = _configurationHelper.getGroupConfiguration(
 #### Portlet Instance Configuration
 Applies to a specific portlet instance:
 ```java
+// Using ThemeDisplay
 MyPortletConfig config = _configurationHelper.getPortletInstanceConfiguration(
-    MyPortletConfig.class, portletId);
+    MyPortletConfig.class, themeDisplay);
+
+// Using PortletRequest (extracts ThemeDisplay automatically)
+MyPortletConfig config = _configurationHelper.getPortletInstanceConfiguration(
+    MyPortletConfig.class, portletRequest);
 ```
 
 ## API Reference
@@ -142,8 +147,8 @@ MyPortletConfig config = _configurationHelper.getPortletInstanceConfiguration(
 
 ### Portlet Instance Configuration Methods
 
-- `getPortletInstanceConfiguration(Class<T> configClass, String portletId)` - Get by portlet ID
-- `getPortletInstanceConfiguration(Class<T> configClass, PortletRequest portletRequest)` - Get from PortletRequest
+- `getPortletInstanceConfiguration(Class<T> configClass, ThemeDisplay themeDisplay)` - Get using ThemeDisplay
+- `getPortletInstanceConfiguration(Class<T> configClass, PortletRequest portletRequest)` - Get from PortletRequest (extracts ThemeDisplay)
 - `getPortletInstanceConfigurationSafe(...)` - Safe variants of all above methods
 
 ## Configuration Interface Example

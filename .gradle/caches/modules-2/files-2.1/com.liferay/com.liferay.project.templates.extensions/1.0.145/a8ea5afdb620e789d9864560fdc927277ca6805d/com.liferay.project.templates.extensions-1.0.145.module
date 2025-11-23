@@ -1,0 +1,60 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.liferay",
+    "module": "com.liferay.project.templates.extensions",
+    "version": "1.0.145",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.5"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "com.liferay.project.templates.extensions-1.0.145.jar",
+          "url": "com.liferay.project.templates.extensions-1.0.145.jar",
+          "size": 26972,
+          "sha512": "4967bc1cf232e3bf1ff5c05530722cf4c95561304aac94c82279acbd65ef383fdfd710949c69ec4048a3d64b41f4af5f380da97e565260802904034e96f43051",
+          "sha256": "b8c8fc5e0ddb0932e25c960d0290c2cc0fa2e391f03b300d30e8be2ae84f5899",
+          "sha1": "7bca59dbb99a253f3470946b9f7d428bc494bae3",
+          "md5": "38ac476058618f24d656fb666e4f58e1"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "com.liferay.project.templates.extensions-1.0.145.jar",
+          "url": "com.liferay.project.templates.extensions-1.0.145.jar",
+          "size": 26972,
+          "sha512": "4967bc1cf232e3bf1ff5c05530722cf4c95561304aac94c82279acbd65ef383fdfd710949c69ec4048a3d64b41f4af5f380da97e565260802904034e96f43051",
+          "sha256": "b8c8fc5e0ddb0932e25c960d0290c2cc0fa2e391f03b300d30e8be2ae84f5899",
+          "sha1": "7bca59dbb99a253f3470946b9f7d428bc494bae3",
+          "md5": "38ac476058618f24d656fb666e4f58e1"
+        }
+      ]
+    }
+  ]
+}

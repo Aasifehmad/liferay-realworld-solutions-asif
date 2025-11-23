@@ -1,0 +1,90 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.liferay",
+    "module": "com.liferay.release.util",
+    "version": "1.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.5"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "com.liferay.release.util-1.0.0.jar",
+          "url": "com.liferay.release.util-1.0.0.jar",
+          "size": 29161,
+          "sha512": "278fe1f21bb0e9ecf361cc9e17b691448870ae3416d904e528d5f5ea503d77052887f5fcea15dbfc1344077b3f5f103a18110db23d22b33efd6de310725367b1",
+          "sha256": "2d6a5dc536bea9a1ee8be94aa82ad2a1b5a746de923201b6c820ffb81e5c22a8",
+          "sha1": "9a2db6904bdf3e9b1bdc4c7ec8252a45985d8ecf",
+          "md5": "8cf048809a71eefce39299ff57113efc"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-databind",
+          "version": {
+            "requires": "2.16.1"
+          }
+        },
+        {
+          "group": "org.apache.httpcomponents",
+          "module": "httpclient",
+          "version": {
+            "requires": "4.5.13"
+          }
+        },
+        {
+          "group": "org.apache.httpcomponents",
+          "module": "httpcore",
+          "version": {
+            "requires": "4.4.14"
+          }
+        },
+        {
+          "group": "org.slf4j",
+          "module": "slf4j-api",
+          "version": {
+            "requires": "1.7.26"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "com.liferay.release.util-1.0.0.jar",
+          "url": "com.liferay.release.util-1.0.0.jar",
+          "size": 29161,
+          "sha512": "278fe1f21bb0e9ecf361cc9e17b691448870ae3416d904e528d5f5ea503d77052887f5fcea15dbfc1344077b3f5f103a18110db23d22b33efd6de310725367b1",
+          "sha256": "2d6a5dc536bea9a1ee8be94aa82ad2a1b5a746de923201b6c820ffb81e5c22a8",
+          "sha1": "9a2db6904bdf3e9b1bdc4c7ec8252a45985d8ecf",
+          "md5": "8cf048809a71eefce39299ff57113efc"
+        }
+      ]
+    }
+  ]
+}

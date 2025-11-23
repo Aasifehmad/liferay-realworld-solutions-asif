@@ -1,0 +1,148 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.liferay",
+    "module": "com.liferay.gradle.plugins.target.platform",
+    "version": "4.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.5"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "biz.aQute.bnd",
+          "module": "biz.aQute.bnd",
+          "version": {
+            "requires": "6.4.0"
+          }
+        },
+        {
+          "group": "biz.aQute.bnd",
+          "module": "biz.aQute.bnd.gradle",
+          "version": {
+            "requires": "6.4.0"
+          }
+        },
+        {
+          "group": "biz.aQute.bnd",
+          "module": "biz.aQute.repository",
+          "version": {
+            "requires": "6.4.0"
+          }
+        },
+        {
+          "group": "biz.aQute.bnd",
+          "module": "biz.aQute.resolve",
+          "version": {
+            "requires": "6.4.0"
+          }
+        },
+        {
+          "group": "com.liferay",
+          "module": "com.liferay.gradle.util",
+          "version": {
+            "requires": "1.0.49"
+          }
+        },
+        {
+          "group": "org.json",
+          "module": "json",
+          "version": {
+            "requires": "20231013"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "com.liferay.gradle.plugins.target.platform-4.0.1.jar",
+          "url": "com.liferay.gradle.plugins.target.platform-4.0.1.jar",
+          "size": 41003,
+          "sha512": "c1c36013d7ee39a1caab567420360714888e107b6d922ea1d8bf6ca85d2ce76068f7f8eb5a05bcd1775d7bd53d7f900e05607da6167100ac80ad0eaaef046301",
+          "sha256": "72d5d8be3250643e8e995062230040bb10e4a96a62d19f57fd311dcb03e49ef8",
+          "sha1": "f2c8d5687724a8b94176bc95a0be5b2d9a1bdc28",
+          "md5": "645d3eaa5649485c703b0af75b8fa101"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "biz.aQute.bnd",
+          "module": "biz.aQute.bnd",
+          "version": {
+            "requires": "6.4.0"
+          }
+        },
+        {
+          "group": "biz.aQute.bnd",
+          "module": "biz.aQute.bnd.gradle",
+          "version": {
+            "requires": "6.4.0"
+          }
+        },
+        {
+          "group": "biz.aQute.bnd",
+          "module": "biz.aQute.repository",
+          "version": {
+            "requires": "6.4.0"
+          }
+        },
+        {
+          "group": "biz.aQute.bnd",
+          "module": "biz.aQute.resolve",
+          "version": {
+            "requires": "6.4.0"
+          }
+        },
+        {
+          "group": "com.liferay",
+          "module": "com.liferay.gradle.util",
+          "version": {
+            "requires": "1.0.49"
+          }
+        },
+        {
+          "group": "org.json",
+          "module": "json",
+          "version": {
+            "requires": "20231013"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "com.liferay.gradle.plugins.target.platform-4.0.1.jar",
+          "url": "com.liferay.gradle.plugins.target.platform-4.0.1.jar",
+          "size": 41003,
+          "sha512": "c1c36013d7ee39a1caab567420360714888e107b6d922ea1d8bf6ca85d2ce76068f7f8eb5a05bcd1775d7bd53d7f900e05607da6167100ac80ad0eaaef046301",
+          "sha256": "72d5d8be3250643e8e995062230040bb10e4a96a62d19f57fd311dcb03e49ef8",
+          "sha1": "f2c8d5687724a8b94176bc95a0be5b2d9a1bdc28",
+          "md5": "645d3eaa5649485c703b0af75b8fa101"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.liferay",
+    "module": "com.liferay.portal.tools.bundle.support",
+    "version": "3.7.7",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.5"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "com.liferay.portal.tools.bundle.support-3.7.7.jar",
+          "url": "com.liferay.portal.tools.bundle.support-3.7.7.jar",
+          "size": 3372385,
+          "sha512": "dd68528412d4beb1901017a90af7ce64bcbfc487c3a0d2219db0c24ed6dcde5e6e095ab9344f30db7442b1ea3608ddb6b09ff33445b8a42c4962ba0ee8a19a5e",
+          "sha256": "0f1a4cfee89a7027907188e6dbf19d92f784dcd4685365d97f1d1676065b3c96",
+          "sha1": "d46a17f8361a67ba994cebbd4284dd49fd9de5ba",
+          "md5": "02efb36b7eab7c5f92837d804e13d21a"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "com.liferay.portal.tools.bundle.support-3.7.7.jar",
+          "url": "com.liferay.portal.tools.bundle.support-3.7.7.jar",
+          "size": 3372385,
+          "sha512": "dd68528412d4beb1901017a90af7ce64bcbfc487c3a0d2219db0c24ed6dcde5e6e095ab9344f30db7442b1ea3608ddb6b09ff33445b8a42c4962ba0ee8a19a5e",
+          "sha256": "0f1a4cfee89a7027907188e6dbf19d92f784dcd4685365d97f1d1676065b3c96",
+          "sha1": "d46a17f8361a67ba994cebbd4284dd49fd9de5ba",
+          "md5": "02efb36b7eab7c5f92837d804e13d21a"
+        }
+      ]
+    }
+  ]
+}
