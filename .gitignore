@@ -1,0 +1,14 @@
+# Gradle
+.gradle/
+build/
+*.iml
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Liferay
+bundles/
+node_modules_cache/
+
