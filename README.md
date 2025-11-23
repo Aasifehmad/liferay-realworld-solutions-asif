@@ -6,12 +6,11 @@ A curated collection of practical Liferay (DXP/Portal) solutions, Java-based mod
 
 ### liferay-configuration-helper
 
-A comprehensive helper utility for managing Liferay configurations across different scopes (System, Company, Group, Portlet Instance). This module simplifies configuration retrieval and provides null-safe methods for better error handling.
+A simple helper utility for managing Liferay company-scoped configurations. This module provides an easy-to-use method for retrieving configurations using the current thread's company context.
 
 **Features:**
-- Multi-scope support (System, Company, Group, Portlet Instance)
-- Null-safe methods for graceful error handling
-- PortletRequest integration for easy context extraction
+- Simple API with single method
+- Automatic context detection using current thread's company ID
 - Comprehensive logging for debugging
 - OSGi component ready for dependency injection
 
@@ -20,8 +19,8 @@ A comprehensive helper utility for managing Liferay configurations across differ
 @Reference
 private LiferayConfigurationHelper _configurationHelper;
 
-MyConfiguration config = _configurationHelper.getCompanyConfiguration(
-    MyConfiguration.class, companyId);
+MyConfiguration config = _configurationHelper.getScopedConfiguration(
+    MyConfiguration.class);
 ```
 
 For detailed documentation, see [liferay-configuration-helper/README.md](liferay-configuration-helper/README.md)

@@ -1,13 +1,12 @@
 # Liferay Configuration Helper
 
-A comprehensive helper utility for managing Liferay configurations across different scopes (System, Company, Group, Portlet Instance). This module simplifies configuration retrieval and provides null-safe methods for better error handling.
+A simple helper utility for managing Liferay company-scoped configurations. This module provides an easy-to-use method for retrieving configurations using the current thread's company context.
 
 ## Features
 
-- **Multi-scope Support**: Retrieve configurations at System, Company, Group, and Portlet Instance levels
-- **Null-safe Methods**: Safe methods that return null instead of throwing exceptions
-- **PortletRequest Integration**: Convenient methods that extract context from PortletRequest
-- **Comprehensive Logging**: Detailed error and warning logs for debugging
+- **Simple API**: Single method to get company-scoped configurations
+- **Automatic Context**: Uses current thread's company ID automatically
+- **Comprehensive Logging**: Detailed error logs for debugging
 - **OSGi Component**: Ready-to-use OSGi service component
 
 ## Installation
@@ -43,9 +42,9 @@ public class MyService {
     private LiferayConfigurationHelper _configurationHelper;
     
     public void doSomething() {
-        // Get company configuration
-        MyConfiguration config = _configurationHelper.getCompanyConfiguration(
-            MyConfiguration.class, companyId);
+        // Get company-scoped configuration
+        MyConfiguration config = _configurationHelper.getScopedConfiguration(
+            MyConfiguration.class);
         
         // Use configuration
         String value = config.someProperty();
@@ -53,103 +52,40 @@ public class MyService {
 }
 ```
 
-### Using Safe Methods
+### Error Handling
 
-Safe methods return `null` instead of throwing exceptions:
+The method throws `ConfigurationException` if configuration cannot be loaded. Handle it as needed:
 
 ```java
-MyConfiguration config = _configurationHelper.getCompanyConfigurationSafe(
-    MyConfiguration.class, companyId);
-
-if (config != null) {
+try {
+    MyConfiguration config = _configurationHelper.getScopedConfiguration(
+        MyConfiguration.class);
     // Use configuration
     String value = config.someProperty();
-} else {
-    // Handle missing configuration
-    _log.warn("Configuration not available, using defaults");
+} catch (ConfigurationException e) {
+    _log.error("Configuration not available", e);
+    // Handle error or use defaults
 }
-```
-
-### Using with PortletRequest
-
-Extract configuration directly from PortletRequest:
-
-```java
-public void render(RenderRequest renderRequest, RenderResponse renderResponse) {
-    // Get company configuration from request
-    MyConfiguration config = _configurationHelper.getCompanyConfigurationSafe(
-        MyConfiguration.class, renderRequest);
-    
-    // Get group configuration from request
-    MyGroupConfiguration groupConfig = _configurationHelper.getGroupConfigurationSafe(
-        MyGroupConfiguration.class, renderRequest);
-    
-    // Get portlet instance configuration
-    MyPortletConfig portletConfig = _configurationHelper.getPortletInstanceConfigurationSafe(
-        MyPortletConfig.class, renderRequest);
-}
-```
-
-### Configuration Scopes
-
-#### System Configuration
-Applies to the entire Liferay instance:
-```java
-MySystemConfig config = _configurationHelper.getSystemConfiguration(
-    MySystemConfig.class);
-```
-
-#### Company Configuration
-Applies to a specific company:
-```java
-MyCompanyConfig config = _configurationHelper.getCompanyConfiguration(
-    MyCompanyConfig.class, companyId);
-```
-
-#### Group Configuration
-Applies to a specific site/group:
-```java
-MyGroupConfig config = _configurationHelper.getGroupConfiguration(
-    MyGroupConfig.class, groupId);
-```
-
-#### Portlet Instance Configuration
-Applies to a specific portlet instance:
-```java
-// Using ThemeDisplay
-MyPortletConfig config = _configurationHelper.getPortletInstanceConfiguration(
-    MyPortletConfig.class, themeDisplay);
-
-// Using PortletRequest (extracts ThemeDisplay automatically)
-MyPortletConfig config = _configurationHelper.getPortletInstanceConfiguration(
-    MyPortletConfig.class, portletRequest);
 ```
 
 ## API Reference
 
-### System Configuration Methods
+### getScopedConfiguration
 
-- `getSystemConfiguration(Class<T> configClass)` - Get system configuration (throws exception)
-- `getSystemConfigurationSafe(Class<T> configClass)` - Get system configuration (returns null on error)
+```java
+public <T> T getScopedConfiguration(Class<T> configClass) throws ConfigurationException
+```
 
-### Company Configuration Methods
+Gets the company-scoped configuration for the current thread's company ID.
 
-- `getCompanyConfiguration(Class<T> configClass, long companyId)` - Get company configuration by ID
-- `getCompanyConfiguration(Class<T> configClass)` - Get company configuration using thread-local company ID
-- `getCompanyConfiguration(Class<T> configClass, PortletRequest portletRequest)` - Get from PortletRequest
-- `getCompanyConfigurationSafe(...)` - Safe variants of all above methods
+**Parameters:**
+- `configClass` - The configuration class/interface
 
-### Group Configuration Methods
+**Returns:**
+- The configuration instance
 
-- `getGroupConfiguration(Class<T> configClass, long groupId)` - Get group configuration by ID
-- `getGroupConfiguration(Class<T> configClass, PortletRequest portletRequest)` - Get from PortletRequest
-- `getGroupConfigurationSafe(...)` - Safe variants of all above methods
-
-### Portlet Instance Configuration Methods
-
-- `getPortletInstanceConfiguration(Class<T> configClass, ThemeDisplay themeDisplay)` - Get using ThemeDisplay
-- `getPortletInstanceConfiguration(Class<T> configClass, PortletRequest portletRequest)` - Get from PortletRequest (extracts ThemeDisplay)
-- `getPortletInstanceConfigurationSafe(...)` - Safe variants of all above methods
+**Throws:**
+- `ConfigurationException` - If configuration cannot be loaded
 
 ## Configuration Interface Example
 
@@ -179,22 +115,17 @@ public interface MyConfiguration {
 }
 ```
 
-## Error Handling
+## How It Works
 
-The helper provides two types of methods:
+The helper automatically uses the company ID from `CompanyThreadLocal`, which is set by Liferay based on the current request context. This means:
 
-1. **Standard methods**: Throw `ConfigurationException` when configuration cannot be loaded
-2. **Safe methods** (suffixed with `Safe`): Return `null` and log warnings instead of throwing exceptions
-
-Choose based on your error handling strategy:
-- Use standard methods when configuration is required and missing configuration should fail fast
-- Use safe methods when configuration is optional and you want to handle missing configuration gracefully
+- In a portlet request, it uses the company from the request
+- In a service call, it uses the company from the thread context
+- No need to manually pass company IDs
 
 ## Logging
 
-The helper logs errors and warnings using Liferay's logging framework:
-- **ERROR**: When standard methods fail to load configuration
-- **WARN**: When safe methods cannot load configuration (returns null)
+The helper logs errors using Liferay's logging framework when configuration cannot be loaded.
 
 ## Dependencies
 
@@ -213,4 +144,3 @@ Contributions are welcome! Please ensure your code follows Liferay coding standa
 ## Author
 
 Asif Ahmad
-
