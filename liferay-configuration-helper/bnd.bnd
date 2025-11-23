@@ -1,0 +1,8 @@
+Bundle-Name: Liferay Configuration Helper
+Bundle-SymbolicName: com.liferay.realworld.solutions.configuration.helper
+Bundle-Version: 1.0.0
+Bundle-Description: A comprehensive helper utility for managing Liferay configurations across different scopes (System, Company, Group, Portlet)
+
+Export-Package: \
+	com.liferay.realworld.solutions.configuration.helper
+
